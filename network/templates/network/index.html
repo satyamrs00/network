@@ -1,0 +1,71 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <script src="{% static 'network/index.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="newpost" data-display="{{ formDisplay }}">
+            <form action="{% url 'index' %}" method="post">
+                {% csrf_token %}
+                {{ newpostform }}
+                <input type="submit" value="Post">
+            </form>
+        </div>
+    {% endif %}
+    {% for post in page.object_list %}
+        <div class="post" id="post{{ post.id }}">
+            <div class="u">
+                <a href="{% url 'user' post.user.username %}">{{ post.user.username }}</a>
+            </div>
+            <div>{{ post.message }}</div>
+            {% if post.is_edited %}
+                <div class="dt">(edited)</div>
+            {% endif %}
+            <div>
+                {% if user in post.likes.all %}
+                    <i data-post_id="{{ post.id }}" class="like fa fa-heart"></i>
+                {% else %}
+                    <i data-post_id="{{ post.id }}" class="like fa fa-heart-o"></i>
+                {% endif %}
+                <span id="likes{{post.id}}">{{ post.getlikescount }}</span></div>
+            <div class="dt">{{ post.getdatetime }}</div>
+            {% if user == post.user %}
+                <div data-post_id="{{ post.id }}" class="edit">edit</div>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div id="paginator">
+        <span>
+            {% if page.has_previous %}
+                <a href="?p=1">
+                    <<
+                </a>
+            {% endif %}
+        </span>
+        <span>  
+            {% if page.has_previous %}    
+                <a href="?p={{ page.previous_page_number }}">
+                    <
+                </a>
+            {% endif %}
+        </span>  
+        <span>{{ page.number }} of {{ page.paginator.num_pages }}</span>
+        <span>
+            {% if page.has_next %}
+                <a href="?p={{ page.next_page_number }}">
+                    >
+                </a>
+            {% endif %}
+        </span>
+        <span>
+            <a href="?p={{ page.paginator.num_pages }}">
+                {% if page.has_next %}
+                    >>
+                {% endif %}
+            </a>
+        </span>
+    </div>
+{% endblock %}

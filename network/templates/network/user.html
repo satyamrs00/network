@@ -1,0 +1,46 @@
+{% extends "network/layout.html" %}
+{% load tags %}
+{% load static %}
+
+
+{% block head %}
+    <script src="{% static 'network/user.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="user">
+        <div id="usern">
+            <span id="username">{{ userr.username }}</span>
+            {% if user.is_authenticated and user != userr %}
+                <span><button data-userr="{{ userr.username }}" id="follow">
+                    {% if userr|ifinlist:user.following.all %}
+                        Unfollow
+                    {% else %}
+                        Follow
+                    {% endif %}
+                </button></span>                
+            {% endif %}
+            <div>{{ userr.first_name }} {{ userr.last_name }}</div>
+        </div>
+        <div id="userf">
+            <ul>
+                <li>Following</li>
+                <li>{{ userr.getfollowingcount }}</li>
+            </ul>
+            <ul>
+                <li>Followers</li>
+                <li id="followers">{{ userr.getfollowerscount }}</li>
+            </ul>
+        </div>
+        <div id="userp">
+            {% for post in posts %}
+                <div class="post">
+                    <div class="u">{{ userr.username }}</div>
+                    <div>{{ post.message }}</div>
+                    <div><i class="fa fa-heart-o"></i> {{ post.getlikescount }}</div>
+                    <div class="dt">{{ post.getdatetime }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

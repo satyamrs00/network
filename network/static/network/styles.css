@@ -1,0 +1,85 @@
+body {
+    background-color: #1F2428;
+    color: white;
+    padding: 20px;
+}    
+form , .post {
+    display: block;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px 0px;
+    background-color: #24292E;
+}
+textarea {
+    width: 100%;
+    height: 5ch;
+    background-color: #1F2428;
+    color: white;
+}
+form input[type="submit"], button {
+    background-color: #42A5F5;
+    border: 1px solid #42A5F5;
+    border-radius: 4px;
+}
+#usern button:hover, #usern button:focus, form input[type="submit"]:hover, form input[type="submit"]:focus {
+    border: 1px solid black;
+}
+.post i {
+    color: crimson;
+}
+.post i:hover{
+    cursor: pointer;
+}
+.post .dt, .post .u a, .post .u {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+}
+.post a:hover {
+    text-decoration: underline;
+}
+
+#user {
+    padding: 16px;
+}
+#usern span {
+    display: inline-block;
+    padding-bottom: 30px;
+    text-align: center;
+    vertical-align: baseline;
+    min-width: 49%;
+}
+#userf ul {
+    list-style-type: none;
+    display: inline-block;
+    min-width: 49%;
+    padding: 0px;
+}
+#userf li {
+    text-align: center;
+}
+#username {
+    font-weight: bold;
+    font-size: 50px;
+}
+#paginator {
+    min-width: 100%;
+    text-align: center;
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 10px;
+}
+#paginator span {
+    flex: 1 1 auto;
+}
+a, .edit {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+#paginator a:hover, .edit:hover {
+    color: white;
+    text-decoration: white underline;
+}
