@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch(`/post/${button.dataset.post_id}`)
             .then(response => response.json())
             .then(post => {
-                let children = load_form(post);
+                if(document.getElementById('editpost') === null){
+                    var children = load_form(post);
+                }
                 var editpost = document.getElementById('editpost');
                 console.log(editpost.dataset);
                 editpost.onclick = () => {

@@ -1,0 +1,8 @@
+virtualenv
+django
+whitenoise
+dj-database-url
+gunicorn
+python-dotenv
+python-decouple
+psycopg2
